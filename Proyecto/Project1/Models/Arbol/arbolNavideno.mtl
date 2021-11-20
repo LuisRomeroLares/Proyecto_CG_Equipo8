@@ -1,0 +1,88 @@
+newmtl Christmas_Tree
+illum 4
+Kd 0.02 0.12 0.00
+Ka 0.02 0.12 0.00
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.22 0.22 0.22
+Ns 10.00
+newmtl ball_metall
+illum 4
+Kd 0.88 0.82 0.64
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.60 0.58 0.50
+Ns 60.00
+newmtl blue
+illum 4
+Kd 0.07 0.00 1.00
+Ka 0.07 0.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.48 0.24 0.70
+Ns 20.00
+newmtl decoratijn_blue
+illum 4
+Kd 0.58 0.80 1.00
+Ka 0.58 0.80 1.00
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.52 0.70 0.68
+Ns 12.00
+newmtl decoration_green
+illum 4
+Kd 0.58 1.00 0.78
+Ka 0.58 1.00 0.78
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.56 0.68 0.51
+Ns 12.00
+newmtl decoration_pink
+illum 4
+Kd 1.00 0.58 0.65
+Ka 1.00 0.58 0.65
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.70 0.60 0.69
+Ns 12.00
+newmtl loop
+illum 4
+Kd 0.34 0.30 0.22
+Ka 0.34 0.30 0.22
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.63 0.63 0.63
+Ns 20.00
+newmtl pink
+illum 4
+Kd 1.00 0.50 0.80
+Ka 1.00 0.50 0.80
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.05 0.60 0.66
+Ns 20.00
+newmtl red
+illum 4
+Kd 0.75 0.00 0.00
+Ka 0.75 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.70 0.70 0.24
+Ns 20.00
+newmtl white
+illum 4
+Kd 0.55 0.55 0.55
+Ka 0.55 0.55 0.55
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.68 0.69 0.55
+Ns 12.00
+newmtl yellow
+illum 4
+Kd 1.00 0.72 0.00
+Ka 1.00 0.72 0.00
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.70 0.35 0.40
+Ns 20.00
