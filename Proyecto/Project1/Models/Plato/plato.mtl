@@ -1,0 +1,12 @@
+# Blender MTL File: 'ProyectoEscenario.blend'
+# Material Count: 1
+
+newmtl pink
+Ns 20.000005
+Ka 0.766667 0.766667 0.766667
+Kd 0.336398 0.116522 1.000000
+Ks 0.436667 0.436667 0.436667
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3

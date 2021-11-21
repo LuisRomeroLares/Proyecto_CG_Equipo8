@@ -221,7 +221,23 @@ int main()
 	//Model Rosas((char*)"Models/Rose/rosas.obj");
 
 	//Dentro
-	Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
+	//Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
+	Model Estrella((char*)"Models/Estrella/estrella.obj");
+
+	Model Chimenea((char*)"Models/Chimenea/chimenea.obj");
+
+	Model Adorno((char*)"Models/Chimenea/Venado/adornoVenado.obj");
+
+	Model Steve((char*)"Models/Steve/steve.obj");
+
+	Model Sofa((char*)"Models/Sofa/Maya/sofa.obj");
+
+	Model Calcetin1((char*)"Models/Calcetines/calcetin1.obj");
+	Model Calcetin2((char*)"Models/Calcetines/calcetin2.obj");
+
+	//Model Regalo1((char*)"Models/Regalo/regalo1.obj");
+
+	//Model Regalo2((char*)"Models/Regalo/regalo2.obj");
 
 	//Casa
 	Model Ventana1((char*)"Models/Ventana/VentanaFinal/ventana.obj");
@@ -640,9 +656,48 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Piso.Draw(shader);
 
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Arbol.Draw(shader);
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Arbol.Draw(shader);
+		Estrella.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Chimenea.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Adorno.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Steve.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Sofa.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Calcetin1.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Calcetin2.Draw(shader);
+
+		/*model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Regalo1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Regalo2.Draw(shader);*/
 
 		//model = glm::mat4(1);
 		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
