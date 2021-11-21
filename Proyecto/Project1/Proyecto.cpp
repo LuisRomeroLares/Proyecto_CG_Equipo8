@@ -36,7 +36,8 @@ const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-Camera  camera(glm::vec3(-100.0f, 2.0f, -45.0f));
+//Camera  camera(glm::vec3(-100.0f, 2.0f, -45.0f));
+Camera  camera(glm::vec3(-100.0f, 20.0f, 10.0f));
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -61,6 +62,7 @@ float posX =PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0, rotRodDer
 #define MAX_FRAMES 9
 int i_max_steps = 190;
 int i_curr_steps = 0;
+
 typedef struct _frame
 {
 	//Variables para GUARDAR Key Frames
@@ -161,7 +163,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 11", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final RLLD 416052642", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -197,8 +199,8 @@ int main()
 
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	// Setup and compile our shaders
 	Shader shader("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
@@ -208,7 +210,22 @@ int main()
 
 
 	// Load models
-	Model modelo((char*)"Models/Prueba/ProyectoEscenario.obj");
+	//Model modelo((char*)"Models/Prueba/proyectoEscenario.obj");
+	Model modelo((char*)"Models/Pollo/PolloFinal/pollo.obj");
+	//Escenario
+	Model Piso((char*)"Models/Piso/piso.obj");
+
+	//Modelos
+	Model Among((char*)"Models/Among/among.obj");
+	//Model Jardin((char*)"Models/Jardin/jardin.obj");
+	//Model Rosas((char*)"Models/Rose/rosas.obj");
+
+	//Dentro
+	Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
+
+	//Casa
+	Model Ventana1((char*)"Models/Ventana/VentanaFinal/ventana.obj");
+
 
 	Model BotaDer((char*)"Models/Personaje/bota.obj");
 	Model PiernaDer((char*)"Models/Personaje/piernader.obj");
@@ -454,9 +471,9 @@ int main()
 		// == ==========================
 		// Directional light
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.0f, 1.0f, 1.0f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.2f, 0.2f, 0.2f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.3f, 0.3f, 0.3f);
 
 
 		// Point light 1
@@ -606,11 +623,47 @@ int main()
 		Cabeza.Draw(lightingShader);
 
 		// Draw the loaded model
+
+
 		model = glm::mat4(1);
 		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		modelo.Draw(shader);
 
+		model = glm::mat4(1);
+		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Among.Draw(shader);
+
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Piso.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Arbol.Draw(shader);
+
+		//model = glm::mat4(1);
+		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Jardin.Draw(shader);
+
+		//model = glm::mat4(1);
+		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Rosas.Draw(shader);
+
+		//Carga de modelos que son transparentes
+
+		glEnable(GL_BLEND); //Habilitamos la transparencia
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Ventana1.Draw(lightingShader);
+
+		glEnable(GL_BLEND); //Deshabilitamos la transparencia
 
 		glBindVertexArray(0);
 
