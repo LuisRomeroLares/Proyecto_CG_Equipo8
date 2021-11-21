@@ -220,8 +220,11 @@ int main()
 	//Model Jardin((char*)"Models/Jardin/jardin.obj");
 	//Model Rosas((char*)"Models/Rose/rosas.obj");
 
+	Model Casa((char*)"Models/Casa/casa3.obj");
+
 	//Dentro
 	//Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
+
 	Model Estrella((char*)"Models/Estrella/estrella.obj");
 
 	Model Chimenea((char*)"Models/Chimenea/chimenea.obj");
@@ -664,10 +667,12 @@ int main()
 		//modelo.Draw(shader);
 
 		model = glm::mat4(1);
-		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Among.Draw(shader);
 
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Casa.Draw(shader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
