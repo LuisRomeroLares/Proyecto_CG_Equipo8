@@ -1,0 +1,21 @@
+newmtl Blanco
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd T_Blanca.jpg
+Ni 1.45
+newmtl Botella4_lambert2SG_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd T_BotellaObscura.jpg
+Ni 1.00
+newmtl red
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.25 0.25 0.25
+Tf 1.00 1.00 1.00
+map_Kd T_Roja.jpg
+Ni 1.50

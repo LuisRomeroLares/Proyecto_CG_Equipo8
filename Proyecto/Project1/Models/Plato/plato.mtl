@@ -1,12 +1,21 @@
-# Blender MTL File: 'ProyectoEscenario.blend'
-# Material Count: 1
-
+newmtl lambert22SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Concrete_Floor_ABDeeN_diffuse1.jpg
+Ni 1.00
+newmtl lambert23SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd stveve02.JPG
+Ni 1.00
 newmtl pink
-Ns 20.000005
-Ka 0.766667 0.766667 0.766667
-Kd 0.336398 0.116522 1.000000
-Ks 0.436667 0.436667 0.436667
-Ke 0.000000 0.000000 0.000000
-Ni 1.500000
-d 1.000000
-illum 3
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.77 0.77 0.77
+Tf 1.00 1.00 1.00
+map_Kd T_Plato.jpg
+Ni 1.50

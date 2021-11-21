@@ -1,23 +1,70 @@
-# Blender MTL File: 'ProyectoEscenario.blend'
-# Material Count: 2
-
 newmtl Material__25
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 0.000000 0.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
-map_Kd T_regalo.jpg
-
-newmtl Material__26
-Ns 0.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.000000 0.000000 0.000000
-Ks 0.000000 0.000000 0.000000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-d 1.000000
-illum 1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd leather_red_03_coll1_1k.jpg
+Ni 1.45
+newmtl Material__27
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd T_Blanca.jpg
+Ni 1.45
+newmtl dulceNavideño_lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Candy_Cane04_Candy_Cane_pbr_ssscol.png
+Ni 1.00
+newmtl lambert22SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Concrete_Floor_ABDeeN_diffuse1.jpg
+Ni 1.00
+newmtl lambert23SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd stveve02.JPG
+Ni 1.00
+newmtl pink
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.77 0.77 0.77
+Tf 1.00 1.00 1.00
+map_Kd T_Plato.jpg
+Ni 1.50
+newmtl regalo2FaltaTexturizar____Default
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd T_regalo2.jpg
+Ni 1.45
+newmtl regalo2FaltaTexturizar____Default2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TexturaRoja.png
+Ni 1.45
+newmtl regalo2FaltaTexturizar____Default4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TexturaRoja.png
+Ni 1.45
+newmtl regalo2FaltaTexturizar____Default6
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd bajo.png
+Ni 1.45

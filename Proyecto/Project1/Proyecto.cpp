@@ -211,7 +211,7 @@ int main()
 
 	// Load models
 	//Model modelo((char*)"Models/Prueba/proyectoEscenario.obj");
-	Model modelo((char*)"Models/Pollo/PolloFinal/pollo.obj");
+	
 	//Escenario
 	Model Piso((char*)"Models/Piso/piso.obj");
 
@@ -230,14 +230,31 @@ int main()
 
 	Model Steve((char*)"Models/Steve/steve.obj");
 
-	Model Sofa((char*)"Models/Sofa/Maya/sofa.obj");
+	Model Sofa((char*)"Models/Sofa/sofa.obj");
 
 	Model Calcetin1((char*)"Models/Calcetines/calcetin1.obj");
 	Model Calcetin2((char*)"Models/Calcetines/calcetin2.obj");
 
-	//Model Regalo1((char*)"Models/Regalo/regalo1.obj");
 
-	//Model Regalo2((char*)"Models/Regalo/regalo2.obj");
+	Model Mesa((char*)"Models/Mesa/mesa.obj");
+
+	//Model Pollo((char*)"Models/Pollo/PolloFinal/pollo.obj");
+	Model Plato((char*)"Models/Plato/plato.obj");
+	Model Dulce((char*)"Models/Dulce/dulceNavideno.obj");
+	/*Model Botella1((char*)"Models/Botellas/botella1.obj");
+	Model Botella2((char*)"Models/Botellas/botella2.obj");
+	Model Botella3((char*)"Models/Botellas/botella3.obj");
+	Model Botella4((char*)"Models/Botellas/botella4.obj");
+	Model Botella5((char*)"Models/Botellas/botella5.obj");
+	Model Botella6((char*)"Models/Botellas/botella6.obj");
+	Model Botella7((char*)"Models/Botellas/botella7.obj");
+	Model Botella8((char*)"Models/Botellas/botella8.obj");*/
+
+
+
+	Model Regalo1((char*)"Models/Regalo/regalo1.obj");
+
+	Model Regalo2((char*)"Models/Regalo/regalo2.obj");
 
 	//Casa
 	Model Ventana1((char*)"Models/Ventana/VentanaFinal/ventana.obj");
@@ -641,10 +658,10 @@ int main()
 		// Draw the loaded model
 
 
-		model = glm::mat4(1);
-		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		modelo.Draw(shader);
+		//model = glm::mat4(1);
+		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//modelo.Draw(shader);
 
 		model = glm::mat4(1);
 		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -663,6 +680,7 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Estrella.Draw(shader);
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Chimenea.Draw(shader);
@@ -672,32 +690,77 @@ int main()
 		Adorno.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Steve.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Sofa.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Calcetin1.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-44.74f, 340.0f, 0.5f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Calcetin2.Draw(shader);
 
-		/*model = glm::mat4(1);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Mesa.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Plato.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Dulce.Draw(shader);
+
+		//model = glm::mat4(1);
+		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Pollo.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella1.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella2.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella3.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella4.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella5.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella6.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella7.Draw(shader);
+
+		//model = glm::mat4(1);
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//Botella8.Draw(shader);
+
+		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Regalo1.Draw(shader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Regalo2.Draw(shader);*/
+		Regalo2.Draw(shader);
 
 		//model = glm::mat4(1);
 		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -711,14 +774,14 @@ int main()
 
 		//Carga de modelos que son transparentes
 
-		glEnable(GL_BLEND); //Habilitamos la transparencia
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		//glEnable(GL_BLEND); //Habilitamos la transparencia
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Ventana1.Draw(lightingShader);
 
-		glEnable(GL_BLEND); //Deshabilitamos la transparencia
+		//glEnable(GL_BLEND); //Deshabilitamos la transparencia
 
 		glBindVertexArray(0);
 
@@ -747,6 +810,8 @@ int main()
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
+
+
 		glBindVertexArray(0);
 
 
@@ -1011,32 +1076,27 @@ void DoMovement()
 	// Camera controls
 	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
 	{
-		camera.ProcessKeyboard(FORWARD, deltaTime);
+		camera.ProcessKeyboard(FORWARD, deltaTime*2);
 
 	}
 
 	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
 	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime);
+		camera.ProcessKeyboard(BACKWARD, deltaTime*2);
 
 
 	}
 
 	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
 	{
-		camera.ProcessKeyboard(LEFT, deltaTime);
+		camera.ProcessKeyboard(LEFT, deltaTime*2);
 
 
 	}
 
 	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
 	{
-		camera.ProcessKeyboard(RIGHT, deltaTime);
+		camera.ProcessKeyboard(RIGHT, deltaTime*2);
 	}
-
-
-
-
-
 
 }
