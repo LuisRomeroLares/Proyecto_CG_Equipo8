@@ -1,0 +1,7 @@
+newmtl aiStandardSurface1SG_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd Concrete_Floor_ABDeeN_diffuse1.jpg
+Ni 1.00

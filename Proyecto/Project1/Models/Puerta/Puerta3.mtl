@@ -1,0 +1,44 @@
+newmtl Puerta2_aiStandardSurface2SG_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd adorno.png
+Ni 1.00
+newmtl Puerta3_aiStandardSurface1SG_002
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TexturaRoja.png
+Ni 1.00
+newmtl Puerta3_aiStandardSurface2SG_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd adorno.png
+Ni 1.00
+newmtl Puerta3_aiStandardSurface3SG_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 0.00
+Ks 0.00 0.00 0.00
+Ns 0.00
+newmtl aiStandardSurface1SG_002
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd TexturaRoja.png
+Ni 1.00
+newmtl aiStandardSurface3SG_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 0.00
+Ks 0.00 0.00 0.00
+Ns 0.00
