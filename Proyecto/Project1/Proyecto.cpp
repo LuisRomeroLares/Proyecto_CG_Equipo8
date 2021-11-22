@@ -1,3 +1,4 @@
+//Proyecto Final 416052642 Romero Lares Luis Daniel
 #include <iostream>
 #include <cmath>
 
@@ -30,6 +31,8 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 void animacion();
+
+
 
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
