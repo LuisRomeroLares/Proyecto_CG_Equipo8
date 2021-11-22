@@ -1,11 +1,16 @@
 ﻿  Proyecto.cpp
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(495,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(549,88): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(550,91): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1054,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1055,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1059,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1060,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1062,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1063,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(496,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(534,88): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(535,91): warning C4244: 'argumento': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1023,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1024,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1028,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1029,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1031,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+B:\Git\Proyecto_CG_RLLD\Proyecto\Project1\Proyecto.cpp(1032,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+soil2-debug.lib(etc1_utils.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(etc1_utils.obj)' o en 'B:\Git\Proyecto_CG_RLLD\Proyecto\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'B:\Git\Proyecto_CG_RLLD\Proyecto\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(image_helper.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_helper.obj)' o en 'B:\Git\Proyecto_CG_RLLD\Proyecto\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(SOIL2.obj)' o en 'B:\Git\Proyecto_CG_RLLD\Proyecto\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
   Project1.vcxproj -> B:\Git\Proyecto_CG_RLLD\Proyecto\Debug\Project1.exe
