@@ -1,2 +1,2 @@
-﻿  Iluminacion.cpp
-B:\Git\PracticasLabCG\Project1\Project1\Iluminacion.cpp(5,10): fatal error C1083: No se puede abrir el archivo incluir: 'GL/glew.h': No such file or directory
+﻿  Proyecto.cpp
+C:\Users\arman\Documents\PROYECTOS\Clonacion_Proyecto\Proyecto_CG_Equipo8\Proyecto\Project1\Proyecto.cpp(6,10): fatal error C1083: No se puede abrir el archivo incluir: 'GL/glew.h': No such file or directory
