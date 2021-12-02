@@ -48,6 +48,15 @@ bool firstMouse = true;
 float range = 0.0f;
 float rot = 0.0f;
 
+float rot_tren = 0.0f;
+bool recorrido1=true;
+bool recorrido2=false;
+bool recorrido3=false;
+bool recorrido4=false;
+float movx = 0.0f;
+float movz = 0.0f;
+float rotvehiculo = 0.0;
+bool active_tren;
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
@@ -288,9 +297,23 @@ int main()
 	Model BrazoDer((char*)"Models/Personaje/brazoder.obj");
 	Model BrazoIzq((char*)"Models/Personaje/brazoizq.obj");
 	Model Cabeza((char*)"Models/Personaje/cabeza.obj");
+
+
+
+
+	//TREN
+	Model tren2((char*)"Models/TREN/TREN2.obj");
+	Model tren((char*)"Models/TREN/TREN.obj");
+	Model tren3((char*)"Models/TREN/TREN3.obj");
+	Model llanta1((char*)"Models/TREN/LLANTA1.obj");
+	Model llanta2((char*)"Models/TREN/LLANTA1.obj");
+	Model llanta3((char*)"Models/TREN/LLANTA2.obj");
+	Model llanta4((char*)"Models/TREN/LLANTA2.obj");
+	Model llanta5((char*)"Models/TREN/LLANTA2.obj");
+	Model llanta6((char*)"Models/TREN/LLANTA2.obj");
 	// Build and compile our shader program
 
-	//Inicialización de KeyFrames
+	//Inicializaciï¿½n de KeyFrames
 	
 	for(int i=0; i<MAX_FRAMES; i++)
 	{
@@ -620,6 +643,69 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Among.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372f + movx, 6.023f, 66.057f + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tren2.Draw(lightingShader);
+
+			////Llanta delantera izquierda
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-8.434f, 2.209f, 3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f)); 		
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-8.434f, 2.209f, -3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.434f, 3.5f, -3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta3.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.434f, 3.5f, 3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta4.Draw(lightingShader);
+		
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(10.434f, 3.5f, -3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta5.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(10.434f, 3.5f, 3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		//glUniform1f(glGetUniformLocation(lightingShader.Program, "activatransparencia"), 0);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta6.Draw(lightingShader);
+
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -1016,6 +1102,12 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		else
 			LightP1 = glm::vec3(0.0f, 0.0f, 0.0f);
 	}
+
+	if (keys[GLFW_KEY_SPACE])
+	{
+		active_tren = !active_tren;
+		anim = !anim;
+	}
 }
 
 void MouseCallback(GLFWwindow *window, double xPos, double yPos)
@@ -1157,5 +1249,76 @@ void DoMovement()
 	{
 		camera.ProcessKeyboard(RIGHT, deltaTime*2);
 	}
+
+	if (anim)
+	{
+		if (recorrido1)
+		{
+			if (movx < -130.0f)
+			{
+				recorrido1 = false;
+				recorrido2 = true;
+				rotvehiculo = -90.0f;
+
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movx -= 0.1f;
+			}
+		}
+
+		if (recorrido2)
+		{
+			if (movz < -150.0f)
+			{
+				recorrido2 = false;
+				recorrido3 = true;
+				rotvehiculo = -180.0f;
+
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movz -= 0.1f;
+			}
+		}
+
+		if (recorrido3)
+		{
+			if (movx > 130.0f)
+			{
+				recorrido3 = false;
+				recorrido4 = true;
+				rotvehiculo = 90.0f;
+
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movx += 0.1f;
+			}
+		}
+
+		if (recorrido4)
+		{
+			if (movx > 150.0f)
+			{
+				recorrido4 = false;
+				recorrido1 = true;
+				rotvehiculo = 0.0f;
+
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movx += 0.1f;
+
+			}
+		}
+	}
+
+
+
 
 }
