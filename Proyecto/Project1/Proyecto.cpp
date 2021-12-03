@@ -71,6 +71,22 @@ float movy2 = 0.0f;
 bool active_nieve;
 bool anim_nieve = false;
 
+
+float rot_brazo = 0.0f;
+float rot_brazo2 = 0.0f;
+float rot_gorro = 0.0f;
+bool active_brazo;
+bool anim_brazo = false;
+bool recorrido1_brazo = true;
+bool recorrido2_brazo = false;
+bool recorrido3_brazo = false;
+bool recorrido4_brazo = false;
+bool recorrido5_brazo = false;
+bool recorrido6_brazo = false;
+float mov_gorro = 0.0f;
+
+
+
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
@@ -328,6 +344,13 @@ int main()
 	//NIEVE
 	Model nieve((char*)"Models/TREN/NIEVE.obj");
 	Model nieve2((char*)"Models/TREN/NIEVE2.obj");
+
+	////nieve2
+	Model muneco((char*)"Models/BLANCO/MUNECO.obj");
+	Model muneco1((char*)"Models/BLANCO/MUNECO1.obj");
+	Model brazo1((char*)"Models/BLANCO/BRAZO.obj");
+	Model gorro((char*)"Models/BLANCO/GORRO.obj");
+	Model brazo2((char*)"Models/BLANCO/BRAZO2.obj");
 
 	// Build and compile our shader program
 
@@ -736,6 +759,37 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		nieve.Draw(lightingShader);
 
+
+		view = camera.GetViewMatrix();
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		muneco.Draw(lightingShader);
+
+		view = camera.GetViewMatrix();
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(21.532f, 5.5f, 23.38f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		muneco1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(22.532f, 5.0f  ,23.38f));
+		model = glm::rotate(model, glm::radians(rot_brazo), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		brazo1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(19.0532f, 5.0f, 23.38f));
+		model = glm::rotate(model, glm::radians(rot_brazo2), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		brazo2.Draw(lightingShader);
+
+		view = camera.GetViewMatrix();
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(21.532f + mov_gorro, 8.2f, 23.38f));
+		//model = glm::rotate(model, glm::radians(rot_gorro), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		gorro.Draw(lightingShader);
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Casa.Draw(shader);
@@ -1143,6 +1197,12 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		active_nieve = !active_nieve;
 		anim_nieve = !anim_nieve;
 	}
+
+	if (keys[GLFW_KEY_X])
+	{
+		active_brazo = !active_brazo;
+		anim_brazo = !anim_brazo;
+	}
 	
 }
 
@@ -1412,7 +1472,86 @@ void DoMovement()
 				}
 			}
 
+		
 		}
+
+
+		if (anim_brazo)
+	{
+		if (recorrido1_brazo)
+		{
+			if (rot_brazo > 52.0f) {
+				//rot_gorro = -1.0f;
+				recorrido1_brazo = false;
+				recorrido2_brazo = true;
+			}
+			else
+			{
+				rot_brazo += 0.1f;
+			}
+		}
+
+		if (recorrido2_brazo)
+		{
+			if (mov_gorro < -1.0f) {
+				//rot_gorro = -1.0f;
+				recorrido2_brazo = false;
+				recorrido3_brazo = true;
+				recorrido4_brazo = true;
+			}
+			else
+			{
+				mov_gorro -= 0.01f;
+			}
+		}
+
+		if (recorrido3_brazo)
+		{
+			if (rot_brazo < 0.0f) {
+				recorrido3_brazo = false;
+				//recorrido4_brazo = true;
+			}
+			else
+			{
+				rot_brazo -= 0.1f;
+			}
+		}
+		if (recorrido4_brazo)
+		{
+			if (rot_brazo2 < -60.0f) {
+				recorrido5_brazo = true;
+				recorrido4_brazo = false;
+			}
+			else
+			{
+				rot_brazo2 -= 0.1f;
+			}
+		}
+		if (recorrido5_brazo)
+		{
+			if (mov_gorro > 0.0f) {
+				recorrido5_brazo = false;
+				recorrido6_brazo =true;
+			}
+			else
+			{
+				mov_gorro += 0.01;
+			}
+		}
+
+		if (recorrido6_brazo)
+		{
+			if (rot_brazo2 > 0.0f) {
+				recorrido6_brazo = false;
+				recorrido1_brazo = true;
+			}
+			else
+			{
+				rot_brazo2 += 0.1;
+			}
+		}
+
+	}
 
 
 }
