@@ -1,0 +1,255 @@
+newmtl GreathNorthernXpress:___Default
+illum 4
+Kd 0.60 0.60 0.60
+Ka 0.60 0.60 0.60
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.90 0.90 0.90
+Ns 0.00
+newmtl GreathNorthernXpress1:___Default
+illum 4
+Kd 0.60 0.60 0.60
+Ka 0.60 0.60 0.60
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.90 0.90 0.90
+Ns 0.00
+newmtl MUNECO1:initialShadingGroup
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NEGRO.JPG
+Ni 1.00
+newmtl MUNECO1:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BLANCO.JPG
+Ni 1.00
+newmtl MUNECO1:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CAFE.JPG
+Ni 1.00
+newmtl NIEVE1:initialShadingGroup
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NEGRO.JPG
+Ni 1.00
+newmtl NIEVE1:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BLANCO.JPG
+Ni 1.00
+newmtl NIEVE1:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd ROJO.JPG
+Ni 1.00
+newmtl NIEVE1:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CAFE.JPG
+Ni 1.00
+newmtl NIEVE1:lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NARANJA.JPG
+Ni 1.00
+newmtl NIEVE2:initialShadingGroup
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NEGRO.JPG
+Ni 1.00
+newmtl NIEVE2:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BLANCO.JPG
+Ni 1.00
+newmtl NIEVE2:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd ROJO.JPG
+Ni 1.00
+newmtl NIEVE2:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CAFE.JPG
+Ni 1.00
+newmtl NIEVE2:lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NARANJA.JPG
+Ni 1.00
+newmtl _angel_horn_v1_L2:___Default
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_foot_diffuse.jpg
+map_Ka 12148_angelwings_foot_diffuse.jpg
+Ni 1.50
+Ks 0.08 0.09 0.09
+Ns 10.00
+newmtl _angel_horn_v1_L2:___Default2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_hairs_diffuse.jpg
+map_Ka 12148_angelwings_hairs_diffuse.jpg
+Ni 1.50
+Ks 0.09 0.09 0.09
+Ns 10.00
+newmtl _angel_horn_v1_L2:___Default4
+illum 4
+Kd 1.00 0.78 0.13
+Ka 1.00 0.78 0.13
+Tf 1.00 1.00 1.00
+Ni 1.50
+Ks 0.45 0.45 0.45
+Ns 55.00
+newmtl _angel_horn_v1_L2:_angelhorn_eyes
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_eyes_diffuse.jpg
+map_Ka 12148_angelwings_eyes_diffuse.jpg
+Ni 1.50
+Ks 0.09 0.09 0.09
+Ns 50.00
+newmtl _angel_horn_v1_L2:_angelhorn_face1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.19 0.07
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_face_diffuse.jpg
+Ni 1.50
+Ks 0.09 0.09 0.09
+Ns 10.00
+newmtl _angel_horn_v1_L2:_angelhorn_hands
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.40 0.19 0.07
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_hand_diffuse.jpg
+Ni 1.50
+Ks 0.09 0.09 0.09
+Ns 10.00
+newmtl _angel_horn_v1_L2:angel_dress
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_cloth_diffuse.jpg
+map_Ka 12148_angelwings_cloth_diffuse.jpg
+Ni 1.50
+Ks 0.09 0.09 0.09
+Ns 22.00
+newmtl _angel_horn_v1_L2:angel_wings_
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd 12148_angelwings_wings_diffuse.jpg
+map_Ka 12148_angelwings_wings_diffuse.jpg
+Ni 1.50
+Ks 0.09 0.09 0.09
+Ns 10.00
+newmtl casa:Material_001
+illum 4
+Kd 0.00 0.00 0.00
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+map_Kd Tmadera.png
+Ni 1.45
+Ks 0.50 0.50 0.50
+Ns 324.00
+newmtl casa:None
+illum 4
+Kd 0.80 0.80 0.80
+Ka 1.00 1.00 1.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.80 0.80 0.80
+Ns 500.00
+newmtl initialShadingGroup
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd ROJO.jpg
+Ni 1.00
+newmtl lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd VERDE.png
+Ni 1.00
+newmtl lambert5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NEGRO.png
+Ni 1.00
+newmtl lambert7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd AMARILLO.jpg
+Ni 1.00
+newmtl lambert8SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CAFE.png
+Ni 1.00
+newmtl lambert9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd AZUL.png
+Ni 1.00
+newmtl lambert10SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd MORADO.png
+Ni 1.00
