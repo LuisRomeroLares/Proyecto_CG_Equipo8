@@ -58,6 +58,19 @@ float movz = 0.0f;
 float rotvehiculo = 0.0;
 bool active_tren;
 
+
+float movy = 0.0f;
+bool arriba1 = true;
+bool arriba_giro = false;
+bool arriba2 = false;
+bool abajo_giro = false;
+float rot_nieve = 0.0f;
+float movy2 = 0.0f;
+
+
+bool active_nieve;
+bool anim_nieve = false;
+
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
@@ -311,6 +324,11 @@ int main()
 	Model llanta4((char*)"Models/TREN/LLANTA2.obj");
 	Model llanta5((char*)"Models/TREN/LLANTA2.obj");
 	Model llanta6((char*)"Models/TREN/LLANTA2.obj");
+
+	//NIEVE
+	Model nieve((char*)"Models/TREN/NIEVE.obj");
+	Model nieve2((char*)"Models/TREN/NIEVE2.obj");
+
 	// Build and compile our shader program
 
 	//Inicializaci�n de KeyFrames
@@ -706,6 +724,17 @@ int main()
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		llanta6.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-85.126f, 9.55f + movy2, 39.401f));
+		model = glm::rotate(model, glm::radians(rot_nieve2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nieve2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-85.126f , 3.269f + movy, 39.401f) );
+		model = glm::rotate(model, glm::radians(rot_nieve), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nieve.Draw(lightingShader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -1108,6 +1137,13 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		active_tren = !active_tren;
 		anim = !anim;
 	}
+
+	if (keys[GLFW_KEY_Z])
+	{
+		active_nieve = !active_nieve;
+		anim_nieve = !anim_nieve;
+	}
+	
 }
 
 void MouseCallback(GLFWwindow *window, double xPos, double yPos)
@@ -1318,7 +1354,65 @@ void DoMovement()
 		}
 	}
 
+	if (anim_nieve)
+	{
+		if (arriba1)
+		{
+			if (movy > 8.0f && movy2 > 16.0f)
+			{
+				arriba1 = false;
+				arriba_giro = true;
+				//arriba12 = true;
+			}
+			else
+			{
+				movy += 0.1f;
+				movy2 += 0.2f;
+			}
+		}
+		if (arriba_giro)
+		{
+			if (rot_nieve < -360.0f && rot_nieve2 >360.0f)
+			{
+				arriba_giro = false;
+				arriba2 = true;
+			}
+			else
+			{
+				rot_nieve -= 1.0f;
+				rot_nieve2 += 2.0f;
+			}
+		}
+			if (arriba2)
+			{
+				if (movy < 0.0f && movy2 <0.0f)
+				{
+					abajo_giro = true;
+					arriba2 = false;
+				}
+				else
+				{
+					movy -= 0.1f;
+					movy2 -= 0.2f;
+				}
+			}
+			if (abajo_giro)
+			{
+				if (rot_nieve > 0.0f && rot_nieve2 <0.0f)
+				{
+					abajo_giro = false;
+					arriba1 = true;
+					//movy = 0.0f;
+					//rot_nieve = 0.0f;
+				}
+				else
+				{
+					rot_nieve += 1.0f;
+					rot_nieve2 -= 1.0f;
+				}
+			}
 
+		}
 
 
 }
