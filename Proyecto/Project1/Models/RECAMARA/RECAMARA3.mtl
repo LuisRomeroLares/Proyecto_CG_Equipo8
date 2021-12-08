@@ -1,0 +1,71 @@
+newmtl RECAMARA:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd SILLON.jpg
+Ni 1.00
+newmtl RECAMARA:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BLANCO.jpg
+Ni 1.00
+newmtl RECAMARA:lambert6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd MESA.jpg
+Ni 1.00
+newmtl RECAMARA:lambert7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CAFE.jpg
+Ni 1.00
+newmtl RECAMARA:lambert8SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd NEGRO.jpg
+Ni 1.00
+newmtl RECAMARA:lambert9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd TELE.jpg
+Ni 1.00
+newmtl RECAMARA:lambert13SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd ALMUADA.png
+Ni 1.00
+newmtl RECAMARA:lambert14SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd CAMA.png
+Ni 1.00
+newmtl RECAMARA:lambert15SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd MUEBLE.png
+Ni 1.00
+newmtl RECAMARA:wire_000000000
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.35 0.35 0.35
+Ns 32.00
