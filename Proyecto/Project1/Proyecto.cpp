@@ -291,15 +291,8 @@ int main()
 	Model PataVen2_3((char*)"Models/Trineo/pataVen2_3.obj");
 	Model PataVen2_4((char*)"Models/Trineo/pataVen2_4.obj");
 
-	Model PataVen3_1((char*)"Models/Trineo/pataVen3_1.obj");
-	Model PataVen3_2((char*)"Models/Trineo/pataVen3_2.obj");
-	Model PataVen3_3((char*)"Models/Trineo/pataVen3_3.obj");
-	Model PataVen3_4((char*)"Models/Trineo/pataVen3_4.obj");
-
-	Model PataVen4_1((char*)"Models/Trineo/pataVen4_1.obj");
-	Model PataVen4_2((char*)"Models/Trineo/pataVen4_2.obj");
-	Model PataVen4_3((char*)"Models/Trineo/pataVen4_3.obj");
-	Model PataVen4_4((char*)"Models/Trineo/pataVen4_4.obj");
+	//Casa
+	
 
 /////////////////////////////////////////////////////////////
 	Model angel((char*)"Models/ANGEL/ANGEL.obj");
@@ -615,334 +608,97 @@ int main()
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
+		// Bind diffuse map
+		//glBindTexture(GL_TEXTURE_2D, texture1);*/
+
+		// Bind specular map
+		/*glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);*/
+
+
 		glBindVertexArray(VAO);
 		glm::mat4 tmp = glm::mat4(1.0f); //Temp
 
+
+
+		//Carga de modelo 
 		glm::mat4 model(1);
 		
+		// Draw the loaded model
+
+		//model = glm::mat4(1);
+		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//modelo.Draw(shader); Modelo de prueba
+
+		
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Among.Draw(shader);
 
 		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Casa.Draw(shader);
 
 		model = glm::mat4(1);
-		//model = glm::translate(model, glm::vec3(movTrinx,movTriny,movTrinz));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Trineo.Draw(shader);
-
-		model = glm::mat4(1);
-		//model = glm::rotate(model, glm::radians(rotPatVen1_1), glm::vec3(1.0f, 0.0f, 0.0f));
-		//model = glm::translate(model, glm::vec3(movTrinx,movTriny,movTrinz));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen1_1.Draw(shader);
+		MarcoVentana1.Draw(shader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen1_2.Draw(shader);
+		MarcoVentana2.Draw(shader);
+		
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen1_3.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen1_4.Draw(shader);
+		MarcoPuerta1.Draw(shader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen2_1.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen2_2.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen2_3.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen2_4.Draw(shader);
+		Puerta1.Draw(shader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen3_1.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen3_2.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen3_3.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen3_4.Draw(shader);
+		MarcoPuerta2.Draw(shader);
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen4_1.Draw(shader);
+		Puerta2.Draw(shader);
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen4_2.Draw(shader);
+		MarcoPuerta3.Draw(shader);
+
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen4_3.Draw(shader);
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		PataVen4_4.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.701f, 11.833f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.899f, 9.781f, 1.267f));
-		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel_brazo.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.283f, 9.032f, -0.5f));
-		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala1.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(10.283f, 9.032f, -0.5f));
-		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala2.Draw(lightingShader);
+		Puerta3.Draw(shader);
 	
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.701f, 11.833f, -10.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel1.Draw(lightingShader);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Piso.Draw(shader);		
 
-		
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.899f, 9.781f, -8.767f));
-		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel_brazo1.Draw(lightingShader);
 
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.283f, 9.032f, -10.5f));
-		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala11.Draw(lightingShader);
 
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(10.283f, 9.032f, -10.5f));
-		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala21.Draw(lightingShader);
 
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.701f, 11.833f, -20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel2.Draw(lightingShader);
-
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Arbol.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.899f, 9.781f, -18.767f));
-		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel_brazo2.Draw(lightingShader);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Estrella.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(9.283f, 9.032f, -20.5f));
-		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala12.Draw(lightingShader);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Chimenea.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(10.283f, 9.032f, -20.5f));
-		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala22.Draw(lightingShader);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Adorno.Draw(shader);
 
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.701f, 11.833f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel3.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.4f, 9.781f, 1.267f));
-		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel_brazo23.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-66.083f, 9.032f, -0.5f));
-		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala13.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.983f, 9.032f, -0.5f));
-		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala23.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.701f, 11.833f, -10.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel4.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.4f, 9.781f, -8.767f));
-		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel_brazo24.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-66.083f, 9.032f, -10.5f));
-		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala14.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.983f, 9.032f, -10.5f));
-		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala24.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.701f, 11.833f, -20.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel5.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.4f, 9.781f, -18.767f));
-		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		angel_brazo25.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-66.083f, 9.032f, -20.5f));
-		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala15.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-65.983f, 9.032f, -20.5f));
-		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		ala25.Draw(lightingShader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		sala.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		recamara1.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		recamara2.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		recamara3.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		recamara4.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		recamara5.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		recamara_piso.Draw(shader);
-
-	
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		muneco.Draw(shader);
-
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(21.532f, 5.5f, 23.38f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		muneco1.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(22.532f, 5.0f  ,23.38f));
-		model = glm::rotate(model, glm::radians(rot_brazo), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		brazo1.Draw(lightingShader);
-
-		
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(19.0532f, 5.0f, 23.38f));
-		model = glm::rotate(model, glm::radians(rot_brazo2), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		brazo2.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(21.532f + mov_gorro, 8.2f, 23.38f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		gorro.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		Piso.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372f + movx, 6.023f, 66.057f + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tren2.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(-8.434f, 2.209f, 3.056f));
-		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f)); 	
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		llanta1.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(-8.434f, 2.209f, -3.056f));
-		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		llanta2.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(1.434f, 3.5f, -3.056f));
-		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		llanta3.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(1.434f, 3.5f, 3.056f));
-		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		llanta4.Draw(shader);
-		
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(10.434f, 3.5f, -3.056f));
-		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		llanta5.Draw(shader);
-
-		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
-		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(10.434f, 3.5f, 3.056f));
-		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		llanta6.Draw(shader);
-
-
-
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Steve.Draw(shader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(-85.126f, 9.55f + movy2, 39.401f));
