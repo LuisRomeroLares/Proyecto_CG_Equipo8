@@ -215,7 +215,8 @@ int main()
 
 
 	// Load models
-	Model modelo((char*)"Models/Prueba/proyectoEscenario.obj");
+	/*
+	//Model modelo((char*)"Models/Prueba/proyectoEscenario.obj");
 	
 	Model MarcoVentana1((char*)"Models/Ventana/marcoVentana.obj");
 	Model Ventana1((char*)"Models/Ventana/ventana.obj");
@@ -228,18 +229,42 @@ int main()
 	Model Puerta2((char*)"Models/Puerta/Puerta2.obj");
 	Model MarcoPuerta3((char*)"Models/Puerta/marcoPuerta3.obj");
 	Model Puerta3((char*)"Models/Puerta/Puerta3.obj");
-
+	*/
 
 	//Escenario
 	Model Piso((char*)"Models/Piso/piso.obj");
-
+	/*
 	//Modelos
 	Model Among((char*)"Models/Among/among.obj");
 	Model Jardin((char*)"Models/Jardin/jardin.obj");
 	Model Rosas((char*)"Models/Rose/rosas.obj");
 
-	Model Casa((char*)"Models/Casa/casa3.obj");
+	*/
+	//Trineo
+	Model Trineo((char*)"Models/Trineo/trineo.obj");
+	//Venados
+	Model PataVen1_1((char*)"Models/Trineo/pataVen1_1.obj");
+	Model PataVen1_2((char*)"Models/Trineo/pataVen1_2.obj");
+	Model PataVen1_3((char*)"Models/Trineo/pataVen1_3.obj");
+	Model PataVen1_4((char*)"Models/Trineo/pataVen1_4.obj");
 
+	Model PataVen2_1((char*)"Models/Trineo/pataVen2_1.obj");
+	Model PataVen2_2((char*)"Models/Trineo/pataVen2_2.obj");
+	Model PataVen2_3((char*)"Models/Trineo/pataVen2_3.obj");
+	Model PataVen2_4((char*)"Models/Trineo/pataVen2_4.obj");
+
+	Model PataVen3_1((char*)"Models/Trineo/pataVen3_1.obj");
+	Model PataVen3_2((char*)"Models/Trineo/pataVen3_2.obj");
+	Model PataVen3_3((char*)"Models/Trineo/pataVen3_3.obj");
+	Model PataVen3_4((char*)"Models/Trineo/pataVen3_4.obj");
+
+	Model PataVen4_1((char*)"Models/Trineo/pataVen4_1.obj");
+	Model PataVen4_2((char*)"Models/Trineo/pataVen4_2.obj");
+	Model PataVen4_3((char*)"Models/Trineo/pataVen4_3.obj");
+	Model PataVen4_4((char*)"Models/Trineo/pataVen4_4.obj");
+
+	Model Casa((char*)"Models/Casa/casa3.obj");
+	/*
 	//Dentro
 	Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
 
@@ -276,18 +301,19 @@ int main()
 	Model Regalo1((char*)"Models/Regalo/regalo1.obj");
 
 	Model Regalo2((char*)"Models/Regalo/regalo2.obj");
-
+	*/
 	//Casa
 	
 
-
+	/*
 	Model BotaDer((char*)"Models/Personaje/bota.obj");
 	Model PiernaDer((char*)"Models/Personaje/piernader.obj");
 	Model PiernaIzq((char*)"Models/Personaje/piernaizq.obj");
 	Model Torso((char*)"Models/Personaje/torso.obj");
 	Model BrazoDer((char*)"Models/Personaje/brazoder.obj");
 	Model BrazoIzq((char*)"Models/Personaje/brazoizq.obj");
-	Model Cabeza((char*)"Models/Personaje/cabeza.obj");
+	Model Cabeza((char*)"Models/Personaje/cabeza.obj");*/
+
 	// Build and compile our shader program
 
 	//Inicialización de KeyFrames
@@ -617,14 +643,15 @@ int main()
 		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		//modelo.Draw(shader); Modelo de prueba
 
+		/*
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Among.Draw(shader);
-
+		*/
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Casa.Draw(shader);
-
+		/*
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		MarcoVentana1.Draw(shader);
@@ -656,6 +683,7 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Puerta3.Draw(shader);
+		*/
 	
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -663,7 +691,7 @@ int main()
 
 
 
-
+		/*
 
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -763,12 +791,76 @@ int main()
 		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Rosas.Draw(shader);
+		*/
+
+		//-----------------------------------------------------------------------------------------------------
+		//Venados
+		//-----------------------------------------------------------------------------------------------------
+		model = glm::mat4(1);
+		//model = glm::translate(model, glm::vec3(movTrinx,movTriny,movTrinz));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Trineo.Draw(shader);
+
+		model = glm::mat4(1);		
+		//model = glm::rotate(model, glm::radians(rotPatVen1_1), glm::vec3(1.0f, 0.0f, 0.0f));
+		//model = glm::translate(model, glm::vec3(movTrinx,movTriny,movTrinz));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen1_1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen1_2.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen1_3.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen1_4.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen2_1.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen2_2.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen2_3.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen2_4.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen3_1.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen3_2.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen3_3.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen3_4.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen4_1.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen4_2.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen4_3.Draw(shader);
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		PataVen4_4.Draw(shader);
 
 		//Carga de modelos que son transparentes
 
 		glEnable(GL_BLEND); //Habilitamos la transparencia
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+		/*
 		model = glm::mat4(1);
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Ventana1.Draw(lightingShader);
@@ -777,7 +869,7 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Ventana2.Draw(lightingShader);
 		model = glm::mat4(1);
-
+		*/
 		glEnable(GL_BLEND); //Deshabilitamos la transparencia
 
 
@@ -815,7 +907,7 @@ int main()
 		view = camera.GetViewMatrix();
 		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		BotaDer.Draw(lightingShader);
+		//BotaDer.Draw(lightingShader);
 
 		//Brazo derecho
 		view = camera.GetViewMatrix();
