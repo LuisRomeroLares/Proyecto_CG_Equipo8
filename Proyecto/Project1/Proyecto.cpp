@@ -311,6 +311,8 @@ int main()
 	Model ala25((char*)"Models/ANGEL/ALA2.obj");
 	Model angel_brazo25((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
 ///////////////////////////////////////////////////////////////////////
+	
+	Model arboles((char*)"Models/ARBOLES/ARBOLESN.obj");
 	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] =
 	{
@@ -602,6 +604,10 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Casa.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arboles.Draw(shader);
 
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(9.701f, 11.833f, 0.0f));
@@ -1002,6 +1008,20 @@ int main()
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Rosas.Draw(shader);
+
+		glEnable(GL_BLEND); //Habilitamos la transparencia
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Ventana1.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		Ventana2.Draw(lightingShader);
+		model = glm::mat4(1);
+
+		glEnable(GL_BLEND);
 		
 		glBindVertexArray(0);
 
@@ -1115,7 +1135,7 @@ void DoMovement()
 	{
 		if (recorrido1)
 		{
-			if (movx < -130.0f)
+			if (movx < -125.0f)
 			{
 				recorrido1 = false;
 				recorrido2 = true;
@@ -1147,7 +1167,7 @@ void DoMovement()
 
 		if (recorrido3)
 		{
-			if (movx > 130.0f)
+			if (movx > 125.0f)
 			{
 				recorrido3 = false;
 				recorrido4 = true;
@@ -1173,7 +1193,7 @@ void DoMovement()
 			else
 			{
 				rot_tren += 0.3f;
-				movx += 0.1f;
+				movz += 0.1f;
 
 			}
 		}
