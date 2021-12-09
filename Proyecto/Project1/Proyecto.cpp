@@ -1,4 +1,3 @@
-//Proyecto Final 416052642 Romero Lares Luis Daniel
 #include <iostream>
 #include <cmath>
 
@@ -32,15 +31,12 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 void animacion();
 
-
-
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Camera
-//Camera  camera(glm::vec3(-100.0f, 2.0f, -45.0f));
-Camera  camera(glm::vec3(-100.0f, 20.0f, 10.0f));
+Camera  camera(glm::vec3(-100.0f, 2.0f, -45.0f));
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
@@ -48,10 +44,72 @@ bool firstMouse = true;
 float range = 0.0f;
 float rot = 0.0f;
 
+//////////////////////////////
+float rot_brazo = 0.0f;
+float rot_brazo2 = 0.0f;
+float rot_gorro = 0.0f;
+bool active_brazo;
+bool anim_brazo = false;
+bool recorrido1_brazo = true;
+bool recorrido2_brazo = false;
+bool recorrido3_brazo = false;
+bool recorrido4_brazo = false;
+bool recorrido5_brazo = false;
+bool recorrido6_brazo = false;
+float mov_gorro = 0.0f;
+////////////////////////////
+
+////////////////////////////
+bool anim = false;
+float rot_tren = 0.0f;
+bool recorrido1 = true;
+bool recorrido2 = false;
+bool recorrido3 = false;
+bool recorrido4 = false;
+float movx = 0.0f;
+float movz = 0.0f;
+float rotvehiculo = 0.0;
+bool active_tren;
+/////////////////////////////
+
+//////////////////////////////
+float movy = 0.0f;
+bool arriba1 = true;
+bool arriba_giro = false;
+bool arriba2 = false;
+bool abajo_giro = false;
+float rot_nieve = 0.0f;
+float rot_nieve2 = 0.0f;
+float movy2 = 0.0f;
+
+bool active_nieve;
+bool anim_nieve = false;
+////////////////////////////////
+
+////////////////////////////////
+float rot_ala1 = 0.0f;
+float rot_ala2 = 0.0f;
+float rot_brazo_angel = 0.0f;
+bool active_angel;
+bool anim_angel = false;
+float piel_angel1 = 0.0f;
+float piel_angel2 = 0.0f;
+
+bool recorrido1_angel = true;
+bool recorrido2_angel = false;
+bool recorrido3_angel = true;
+bool recorrido4_angel = false;
+bool recorrido5_angel = true;
+bool recorrido6_angel = false;
+bool recorrido7_angel = true;
+bool recorrido8_angel = false;
+bool recorrido9_angel = true;
+bool recorrido10_angel = false;
+//////////////////////////////////
 
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
-glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
+//glm::vec3 PosIni(-95.0f, 1.0f, -45.0f);
 bool active;
 
 
@@ -59,99 +117,16 @@ bool active;
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
-// Keyframes
-float posX =PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0, rotRodDer = 0, rotBraIzq = 0, rotBraDer = 0;
-
-float posLX =-152.50f, posLY =6.0f, posLZ =-91.0f;
-
-#define MAX_FRAMES 9
-int i_max_steps = 190;
-int i_curr_steps = 0;
-
-typedef struct _frame
-{
-	//Variables para GUARDAR Key Frames
-	float posX;		//Variable para PosicionX
-	float posY;		//Variable para PosicionY
-	float posZ;		//Variable para PosicionZ
-	float incX;		//Variable para IncrementoX
-	float incY;		//Variable para IncrementoY
-	float incZ;		//Variable para IncrementoZ
-	float rotRodIzq;
-	float rotRodDer;
-	float rotBraIzq;
-	float rotBraDer;
-	float rotInc;
-	float rotInc2;
-	float rotIncBraI;
-	float rotIncBraD;
-
-}FRAME;
-
-FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir datos
-bool play = false;
-int playIndex = 0;
-
-// Positions of the point lights
 glm::vec3 pointLightPositions[] = {
-	glm::vec3(posLX,posLY,posLZ),
-	glm::vec3(0,0,0),
-	glm::vec3(0,0,0),
-	glm::vec3(0,0,0)
+	glm::vec3(0.0f,0.0f,0.0f),
+	glm::vec3(0.0f,0.0f,0.0f),
+	glm::vec3(0.0f,0.0f,0.0f),
+	glm::vec3(0.0f,0.0f,0.0f)
 };
-
 glm::vec3 LightP1;
 
 
 
-
-void saveFrame(void)
-{
-
-	printf("frameindex %d\n", FrameIndex);
-	
-	KeyFrame[FrameIndex].posX = posX;
-	KeyFrame[FrameIndex].posY = posY;
-	KeyFrame[FrameIndex].posZ = posZ;
-	
-	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].rotRodDer = rotRodDer;
-
-	KeyFrame[FrameIndex].rotBraIzq = rotBraIzq;
-	KeyFrame[FrameIndex].rotBraDer = rotBraDer;
-
-	FrameIndex++;
-}
-
-void resetElements(void)
-{
-	posX = KeyFrame[0].posX;
-	posY = KeyFrame[0].posY;
-	posZ = KeyFrame[0].posZ;
-
-	rotRodIzq = KeyFrame[0].rotRodIzq;
-	rotRodDer = KeyFrame[0].rotRodDer;
-
-	rotBraIzq = KeyFrame[0].rotBraIzq;
-	rotBraDer = KeyFrame[0].rotBraDer;
-
-}
-
-void interpolation(void)
-{
-
-	KeyFrame[playIndex].incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
-	KeyFrame[playIndex].incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
-	KeyFrame[playIndex].incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
-	
-	KeyFrame[playIndex].rotInc  = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	KeyFrame[playIndex].rotInc2 = (KeyFrame[playIndex + 1].rotRodDer - KeyFrame[playIndex].rotRodDer) / i_max_steps;
-
-	KeyFrame[playIndex].rotIncBraI = (KeyFrame[playIndex + 1].rotBraIzq - KeyFrame[playIndex].rotBraIzq) / i_max_steps;
-	KeyFrame[playIndex].rotIncBraD = (KeyFrame[playIndex + 1].rotBraDer - KeyFrame[playIndex].rotBraDer) / i_max_steps;
-
-}
 
 
 
@@ -160,15 +135,10 @@ int main()
 {
 	// Init GLFW
 	glfwInit();
-	// Set all the required options for GLFW
-	/*(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);*/
+
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final RLLD 416052642", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final Equipo 8", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -204,42 +174,110 @@ int main()
 
 	// OpenGL options
 	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	// Setup and compile our shaders
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+/////////////////////////////////////////////////////////////////////////////
 	Shader shader("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
 	Shader lightingShader("Shaders/lighting.vs", "Shaders/lighting.frag");
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
+////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////
+	Model Casa((char*)"Models/Casa/casa3.obj");
+	Model Piso((char*)"Models/Piso/piso.obj");
+/////////////////////////////////////////////////////////////////
 
-	// Load models
-	/*
-	//Model modelo((char*)"Models/Prueba/proyectoEscenario.obj");
-	
+///////////////////////////////////////////////////////////////////////////
+	Model muneco((char*)"Models/BLANCO/MUNECO.obj");
+	Model muneco1((char*)"Models/BLANCO/MUNECO1.obj");
+	Model brazo1((char*)"Models/BLANCO/BRAZO.obj");
+	Model gorro((char*)"Models/BLANCO/GORRO.obj");
+	Model brazo2((char*)"Models/BLANCO/BRAZO2.obj");
+//////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////
+	Model tren2((char*)"Models/TREN/TREN2.obj");
+	Model tren((char*)"Models/TREN/TREN.obj");
+	Model tren3((char*)"Models/TREN/TREN3.obj");
+	Model llanta1((char*)"Models/TREN/LLANTA1.obj");
+	Model llanta2((char*)"Models/TREN/LLANTA1.obj");
+	Model llanta3((char*)"Models/TREN/LLANTA2.obj");
+	Model llanta4((char*)"Models/TREN/LLANTA2.obj");
+	Model llanta5((char*)"Models/TREN/LLANTA2.obj");
+	Model llanta6((char*)"Models/TREN/LLANTA2.obj");
+/////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+	Model nieve((char*)"Models/TREN/NIEVE.obj");
+	Model nieve2((char*)"Models/TREN/NIEVE2.obj");
+///////////////////////////////////////////////////////////////////////
+
+	Model modelo((char*)"Models/Prueba/proyectoEscenario.obj");
+/////////////////////////////////////////////////////////////////////
 	Model MarcoVentana1((char*)"Models/Ventana/marcoVentana.obj");
 	Model Ventana1((char*)"Models/Ventana/ventana.obj");
 	Model MarcoVentana2((char*)"Models/Ventana/marcoVentana2.obj");
 	Model Ventana2((char*)"Models/Ventana/ventana2.obj");
+////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////
 	Model MarcoPuerta1((char*)"Models/Puerta/marcoPuerta1.obj");
 	Model Puerta1((char*)"Models/Puerta/Puerta1.obj");
 	Model MarcoPuerta2((char*)"Models/Puerta/marcoPuerta2.obj");
 	Model Puerta2((char*)"Models/Puerta/Puerta2.obj");
 	Model MarcoPuerta3((char*)"Models/Puerta/marcoPuerta3.obj");
 	Model Puerta3((char*)"Models/Puerta/Puerta3.obj");
-	*/
+///////////////////////////////////////////////////////////////////
 
-	//Escenario
-	Model Piso((char*)"Models/Piso/piso.obj");
-	/*
-	//Modelos
+//////////////////////////////////////////////////////////////////
 	Model Among((char*)"Models/Among/among.obj");
 	Model Jardin((char*)"Models/Jardin/jardin.obj");
 	Model Rosas((char*)"Models/Rose/rosas.obj");
+/////////////////////////////////////////////////////////////////
 
-	*/
+////////////////////////////////////////////////////////////////
+	Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
+	Model Estrella((char*)"Models/Estrella/estrella.obj");
+	Model Chimenea((char*)"Models/Chimenea/chimenea.obj");
+	Model Adorno((char*)"Models/Chimenea/Venado/adornoVenado.obj");
+	Model Sofa((char*)"Models/Sofa/sofa.obj");
+	Model Calcetin1((char*)"Models/Calcetines/calcetin1.obj");
+	Model Calcetin2((char*)"Models/Calcetines/calcetin2.obj");
+	Model Mesa((char*)"Models/Mesa/mesa.obj");
+////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////
+	Model Pollo((char*)"Models/Pollo/PolloFinal/pollo.obj");
+	Model Plato((char*)"Models/Plato/plato.obj");
+	Model Dulce((char*)"Models/Dulce/dulceNavideno.obj");
+	Model Botella1((char*)"Models/Botellas/botella1.obj");
+	Model Botella2((char*)"Models/Botellas/botella2.obj");
+	Model Botella3((char*)"Models/Botellas/botella3.obj");
+	Model Botella4((char*)"Models/Botellas/botella4.obj");
+	Model Botella5((char*)"Models/Botellas/botella5.obj");
+	Model Botella6((char*)"Models/Botellas/botella6.obj");
+	Model Botella7((char*)"Models/Botellas/botella7.obj");
+	Model Botella8((char*)"Models/Botellas/botella8.obj");
+//////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+	Model Regalo1((char*)"Models/Regalo/regalo1.obj");
+	Model Regalo2((char*)"Models/Regalo/regalo2.obj");
+////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+	Model sala((char*)"Models/SALA/SALA.obj");
+////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////
+	Model recamara_piso((char*)"Models/RECAMARA/PISORECAMARA.obj");
+	Model recamara1((char*)"Models/RECAMARA/RECAMARA1.obj");
+	Model recamara2((char*)"Models/RECAMARA/RECAMARA2.obj");
+	Model recamara3((char*)"Models/RECAMARA/RECAMARA3.obj");
+	Model recamara4((char*)"Models/RECAMARA/RECAMARA4.obj");
+	Model recamara5((char*)"Models/RECAMARA/RECAMARA5.obj");
+///////////////////////////////////////////////////////////////
 	//Trineo
 	Model Trineo((char*)"Models/Trineo/trineo.obj");
 	//Venados
@@ -263,79 +301,38 @@ int main()
 	Model PataVen4_3((char*)"Models/Trineo/pataVen4_3.obj");
 	Model PataVen4_4((char*)"Models/Trineo/pataVen4_4.obj");
 
-	Model Casa((char*)"Models/Casa/casa3.obj");
-	/*
-	//Dentro
-	Model Arbol((char*)"Models/Arbol/arbolNavideno.obj");
+/////////////////////////////////////////////////////////////
+	Model angel((char*)"Models/ANGEL/ANGEL.obj");
+	Model ala1((char*)"Models/ANGEL/ALA1.obj");
+	Model ala2((char*)"Models/ANGEL/ALA2.obj");
+	Model angel_brazo((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
 
-	Model Estrella((char*)"Models/Estrella/estrella.obj");
+	Model angel1((char*)"Models/ANGEL/ANGEL.obj");
+	Model ala11((char*)"Models/ANGEL/ALA1.obj");
+	Model ala21((char*)"Models/ANGEL/ALA2.obj");
+	Model angel_brazo1((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
 
-	Model Chimenea((char*)"Models/Chimenea/chimenea.obj");
-
-	Model Adorno((char*)"Models/Chimenea/Venado/adornoVenado.obj");
-
-	Model Steve((char*)"Models/Steve/steve.obj");
-
-	Model Sofa((char*)"Models/Sofa/sofa.obj");
-
-	Model Calcetin1((char*)"Models/Calcetines/calcetin1.obj");
-	Model Calcetin2((char*)"Models/Calcetines/calcetin2.obj");
+	Model angel2((char*)"Models/ANGEL/ANGEL.obj");
+	Model ala12((char*)"Models/ANGEL/ALA1.obj");
+	Model ala22((char*)"Models/ANGEL/ALA2.obj");
+	Model angel_brazo2((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
 
 
-	Model Mesa((char*)"Models/Mesa/mesa.obj");
+	Model angel3((char*)"Models/ANGEL/ANGEL.obj");
+	Model ala13((char*)"Models/ANGEL/ALA1.obj");
+	Model ala23((char*)"Models/ANGEL/ALA2.obj");
+	Model angel_brazo23((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
 
-	Model Pollo((char*)"Models/Pollo/PolloFinal/pollo.obj");
-	Model Plato((char*)"Models/Plato/plato.obj");
-	Model Dulce((char*)"Models/Dulce/dulceNavideno.obj");
-	Model Botella1((char*)"Models/Botellas/botella1.obj");
-	Model Botella2((char*)"Models/Botellas/botella2.obj");
-	Model Botella3((char*)"Models/Botellas/botella3.obj");
-	Model Botella4((char*)"Models/Botellas/botella4.obj");
-	Model Botella5((char*)"Models/Botellas/botella5.obj");
-	Model Botella6((char*)"Models/Botellas/botella6.obj");
-	Model Botella7((char*)"Models/Botellas/botella7.obj");
-	Model Botella8((char*)"Models/Botellas/botella8.obj");
+	Model angel4((char*)"Models/ANGEL/ANGEL.obj");
+	Model ala14((char*)"Models/ANGEL/ALA1.obj");
+	Model ala24((char*)"Models/ANGEL/ALA2.obj");
+	Model angel_brazo24((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
 
-
-
-	Model Regalo1((char*)"Models/Regalo/regalo1.obj");
-
-	Model Regalo2((char*)"Models/Regalo/regalo2.obj");
-	*/
-	//Casa
-	
-
-	/*
-	Model BotaDer((char*)"Models/Personaje/bota.obj");
-	Model PiernaDer((char*)"Models/Personaje/piernader.obj");
-	Model PiernaIzq((char*)"Models/Personaje/piernaizq.obj");
-	Model Torso((char*)"Models/Personaje/torso.obj");
-	Model BrazoDer((char*)"Models/Personaje/brazoder.obj");
-	Model BrazoIzq((char*)"Models/Personaje/brazoizq.obj");
-	Model Cabeza((char*)"Models/Personaje/cabeza.obj");*/
-
-	// Build and compile our shader program
-
-	//Inicialización de KeyFrames
-	
-	for(int i=0; i<MAX_FRAMES; i++)
-	{
-		KeyFrame[i].posX = 0;
-		KeyFrame[i].incX = 0;
-		KeyFrame[i].incY = 0;
-		KeyFrame[i].incZ = 0;
-		KeyFrame[i].rotBraIzq= 0;
-		KeyFrame[i].rotBraDer = 0;
-		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].rotRodIzq = 0;
-		KeyFrame[i].rotInc = 0;
-		KeyFrame[i].rotInc2 = 0;
-		KeyFrame[i].rotIncBraI = 0;
-		KeyFrame[i].rotIncBraD = 0;
-	}
-
-
-
+	Model angel5((char*)"Models/ANGEL/ANGEL.obj");
+	Model ala15((char*)"Models/ANGEL/ALA1.obj");
+	Model ala25((char*)"Models/ANGEL/ALA2.obj");
+	Model angel_brazo25((char*)"Models/ANGEL/ANGEL_BRAZO.obj");
+///////////////////////////////////////////////////////////////////////
 	// Set up vertex data (and buffer(s)) and attribute pointers
 	GLfloat vertices[] =
 	{
@@ -543,29 +540,27 @@ int main()
 		glUniform3f(viewPosLoc, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
 		// Set material properties
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 32.0f);
-		// == ==========================
-		// Here we set all the uniforms for the 5/6 types of lights we have. We have to set them manually and index
-		// the proper PointLight struct in the array to set each uniform variable. This can be done more code-friendly
-		// by defining light types as classes and set their values in there, or by using a more efficient uniform approach
-		// by using 'Uniform buffer objects', but that is something we discuss in the 'Advanced GLSL' tutorial.
-		// == ==========================
+	
 		// Directional light
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.5f, 0.5f, 0.5f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.2f, 0.2f, 0.2f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 0.3f, 0.3f, 0.3f);
 
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].position"), posLX, posLY, posLZ);
+
+		// Point light 1
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].ambient"), 0.0f, 0.0f, 0.0f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].specular"), 0.0f, 0.0f, 0.0f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].diffuse"), 0.945f, 0.945f, 0.294f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].diffuse"), LightP1.x, LightP1.y, LightP1.z);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].specular"), LightP1.x, LightP1.y, LightP1.z);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[0].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[0].linear"),abs(2.25f*(cos((float)13*glfwGetTime())+0.2f)));
-		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[0].quadratic"),abs(2.5f*(cos((float)15*glfwGetTime())+0.2f)));
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[0].linear"), 0.09f);
+		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[0].quadratic"), 0.032f);
+
 
 
 		// Point light 2
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].position"), posLX, posLY, posLZ);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].ambient"), 0.0f, 0.0f, 0.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].diffuse"), 1.0f, 1.0f, 0.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].specular"), 1.0f, 1.0f, 0.0f);
@@ -575,7 +570,7 @@ int main()
 
 		// Point light 3
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].position"), pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].ambient"), 0.0f, 0.0f, 0.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].diffuse"), 0.0f, 1.0f, 1.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].specular"), 0.0f, 1.0f, 1.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[2].constant"), 1.0f);
@@ -584,7 +579,7 @@ int main()
 
 		// Point light 4
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].position"), pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].ambient"), 0.0f, 0.0f, 0.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].diffuse"), 1.0f, 0.0f, 1.0f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].specular"), 1.0f, 0.0f, 1.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].constant"), 1.0f);
@@ -620,188 +615,22 @@ int main()
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
-		// Bind diffuse map
-		//glBindTexture(GL_TEXTURE_2D, texture1);*/
-
-		// Bind specular map
-		/*glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, texture2);*/
-
-
 		glBindVertexArray(VAO);
 		glm::mat4 tmp = glm::mat4(1.0f); //Temp
 
-
-
-		//Carga de modelo 
 		glm::mat4 model(1);
 		
-		// Draw the loaded model
 
-		//model = glm::mat4(1);
-		////model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//modelo.Draw(shader); Modelo de prueba
-
-		/*
 		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Among.Draw(shader);
-		*/
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Casa.Draw(shader);
-		/*
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		MarcoVentana1.Draw(shader);
 
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		MarcoVentana2.Draw(shader);
-		
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		MarcoPuerta1.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Puerta1.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		MarcoPuerta2.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Puerta2.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		MarcoPuerta3.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Puerta3.Draw(shader);
-		*/
-	
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Piso.Draw(shader);		
-
-
-
-		/*
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Arbol.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Estrella.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Chimenea.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Adorno.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Steve.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Sofa.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Calcetin1.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Calcetin2.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Mesa.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Plato.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Dulce.Draw(shader);
-
-		model = glm::mat4(1);
-		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Pollo.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella1.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella2.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella3.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella4.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella5.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella6.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella7.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Botella8.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Regalo1.Draw(shader);
-
-		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Regalo2.Draw(shader);
-
-		model = glm::mat4(1);
-		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Jardin.Draw(shader);
-
-		model = glm::mat4(1);
-		//model = glm::rotate(model, glm::radians(20*(float)glfwGetTime()), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Rosas.Draw(shader);
-		*/
-
-		//-----------------------------------------------------------------------------------------------------
-		//Venados
-		//-----------------------------------------------------------------------------------------------------
 		model = glm::mat4(1);
 		//model = glm::translate(model, glm::vec3(movTrinx,movTriny,movTrinz));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		Trineo.Draw(shader);
 
-		model = glm::mat4(1);		
+		model = glm::mat4(1);
 		//model = glm::rotate(model, glm::radians(rotPatVen1_1), glm::vec3(1.0f, 0.0f, 0.0f));
 		//model = glm::translate(model, glm::vec3(movTrinx,movTriny,movTrinz));
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -856,88 +685,406 @@ int main()
 		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		PataVen4_4.Draw(shader);
 
-		//Carga de modelos que son transparentes
-
-		glEnable(GL_BLEND); //Habilitamos la transparencia
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		/*
 		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Ventana1.Draw(lightingShader);
+		model = glm::translate(model, glm::vec3(9.701f, 11.833f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel.Draw(lightingShader);
 
 		model = glm::mat4(1);
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		Ventana2.Draw(lightingShader);
+		model = glm::translate(model, glm::vec3(9.899f, 9.781f, 1.267f));
+		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel_brazo.Draw(lightingShader);
+
 		model = glm::mat4(1);
-		*/
-		glEnable(GL_BLEND); //Deshabilitamos la transparencia
+		model = glm::translate(model, glm::vec3(9.283f, 9.032f, -0.5f));
+		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala1.Draw(lightingShader);
 
-
-		//Personaje
-		view = camera.GetViewMatrix();
-		//glm::mat4 model(1);
-		tmp = model = glm::translate(model, glm::vec3(0, 1, 0));
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Torso.Draw(lightingShader);
-		//Pierna Izq
-		view = camera.GetViewMatrix();
-		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
-		model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//PiernaDer.Draw(lightingShader);
-		//Pie Izq
-		view = camera.GetViewMatrix();
-		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BotaDer.Draw(lightingShader);
-
-		//Pierna Der
-		view = camera.GetViewMatrix();
-		model = glm::translate(tmp, glm::vec3(0.5f, 0.0f, -0.1f));
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(-rotRodDer), glm::vec3(1.0f, 0.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//PiernaIzq.Draw(lightingShader);
-		//Pie Der
-		view = camera.GetViewMatrix();
-		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BotaDer.Draw(lightingShader);
-
-		//Brazo derecho
-		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(-0.75f, 2.5f, 0));
-		model = glm::rotate(model, glm::radians(rotBraDer), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(10.283f, 9.032f, -0.5f));
+		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BrazoDer.Draw(lightingShader);
-
-		//Brazo Izquierdo
-		view = camera.GetViewMatrix();
+		ala2.Draw(lightingShader);
+	
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(0.75f, 2.5f, 0));
-		model = glm::rotate(model, glm::radians(rotBraIzq), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(9.701f, 11.833f, -10.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//BrazoIzq.Draw(lightingShader);
+		angel1.Draw(lightingShader);
 
-		//Cabeza
-		view = camera.GetViewMatrix();
+		
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0));
-		model = glm::translate(model, glm::vec3(0.0f, 2.5f, 0));
+		model = glm::translate(model, glm::vec3(9.899f, 9.781f, -8.767f));
+		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Cabeza.Draw(lightingShader);
+		angel_brazo1.Draw(lightingShader);
 
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(9.283f, 9.032f, -10.5f));
+		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala11.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(10.283f, 9.032f, -10.5f));
+		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala21.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(9.701f, 11.833f, -20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel2.Draw(lightingShader);
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(9.899f, 9.781f, -18.767f));
+		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel_brazo2.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(9.283f, 9.032f, -20.5f));
+		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala12.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(10.283f, 9.032f, -20.5f));
+		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala22.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.701f, 11.833f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel3.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.4f, 9.781f, 1.267f));
+		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel_brazo23.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-66.083f, 9.032f, -0.5f));
+		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala13.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.983f, 9.032f, -0.5f));
+		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala23.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.701f, 11.833f, -10.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel4.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.4f, 9.781f, -8.767f));
+		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel_brazo24.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-66.083f, 9.032f, -10.5f));
+		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala14.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.983f, 9.032f, -10.5f));
+		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala24.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.701f, 11.833f, -20.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel5.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.4f, 9.781f, -18.767f));
+		model = glm::rotate(model, glm::radians(rot_brazo_angel), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		angel_brazo25.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-66.083f, 9.032f, -20.5f));
+		model = glm::rotate(model, glm::radians(rot_ala1), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala15.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-65.983f, 9.032f, -20.5f));
+		model = glm::rotate(model, glm::radians(rot_ala2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		ala25.Draw(lightingShader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		sala.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		recamara1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		recamara2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		recamara3.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		recamara4.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		recamara5.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		recamara_piso.Draw(shader);
+
+	
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		muneco.Draw(shader);
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(21.532f, 5.5f, 23.38f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		muneco1.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(22.532f, 5.0f  ,23.38f));
+		model = glm::rotate(model, glm::radians(rot_brazo), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		brazo1.Draw(lightingShader);
+
+		
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(19.0532f, 5.0f, 23.38f));
+		model = glm::rotate(model, glm::radians(rot_brazo2), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		brazo2.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(21.532f + mov_gorro, 8.2f, 23.38f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		gorro.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Piso.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372f + movx, 6.023f, 66.057f + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tren2.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-8.434f, 2.209f, 3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f)); 	
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta1.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-8.434f, 2.209f, -3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta2.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.434f, 3.5f, -3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta3.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(1.434f, 3.5f, 3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta4.Draw(shader);
+		
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(10.434f, 3.5f, -3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta5.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-1.372 + movx, 0.0f, 66.057 + movz)); // Translate it down a bit so it's at the center of the scene
+		model = glm::rotate(model, glm::radians(rotvehiculo), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(10.434f, 3.5f, 3.056f));
+		model = glm::rotate(model, glm::radians(rot_tren), glm::vec3(0.0f, 0.0f, 1.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		llanta6.Draw(shader);
+
+
+
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-85.126f, 9.55f + movy2, 39.401f));
+		model = glm::rotate(model, glm::radians(rot_nieve2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nieve2.Draw(shader);
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(-85.126f , 3.269f + movy, 39.401f) );
+		model = glm::rotate(model, glm::radians(rot_nieve), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		nieve.Draw(shader);
+
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Among.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		MarcoVentana1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		MarcoVentana2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		MarcoPuerta1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Puerta1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		MarcoPuerta2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Puerta2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		MarcoPuerta3.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Puerta3.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Arbol.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Estrella.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Chimenea.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Adorno.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Sofa.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Calcetin1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Calcetin2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Mesa.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Plato.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Dulce.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Pollo.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella3.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella4.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella5.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella6.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella7.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Botella8.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Regalo1.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Regalo2.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Jardin.Draw(shader);
+
+		model = glm::mat4(1);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Rosas.Draw(shader);
+		
 		glBindVertexArray(0);
 
 
@@ -965,8 +1112,6 @@ int main()
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
 		}
-
-
 		glBindVertexArray(0);
 
 
@@ -992,6 +1137,9 @@ int main()
 		glfwSwapBuffers(window);
 	}
 
+
+
+
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteVertexArrays(1, &lightVAO);
 	glDeleteBuffers(1, &VBO);
@@ -1003,6 +1151,7 @@ int main()
 
 
 
+
 	return 0;
 }
 
@@ -1010,79 +1159,337 @@ int main()
 void animacion()
 {
 
-		//Movimiento del personaje
+}
 
-		if (play)
+
+void DoMovement()
+{
+
+	// Camera controls
+	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
+	{
+		camera.ProcessKeyboard(FORWARD, deltaTime);
+
+	}
+
+	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
+	{
+		camera.ProcessKeyboard(BACKWARD, deltaTime);
+
+
+	}
+
+	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
+	{
+		camera.ProcessKeyboard(LEFT, deltaTime);
+
+
+	}
+
+	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
+	{
+		camera.ProcessKeyboard(RIGHT, deltaTime);
+
+
+	}
+
+	if (anim)
+	{
+		if (recorrido1)
 		{
-			if (i_curr_steps >= i_max_steps) //end of animation between frames?
+			if (movx < -130.0f)
 			{
-				playIndex++;
-				if (playIndex>FrameIndex - 2)	//end of total animation?
-				{
-					printf("termina anim\n");
-					playIndex = 0;
-					play = false;
-				}
-				else //Next frame interpolations
-				{
-					i_curr_steps = 0; //Reset counter
-									  //Interpolation
-					interpolation();
-				}
+				recorrido1 = false;
+				recorrido2 = true;
+				rotvehiculo = -90.0f;
+
 			}
 			else
 			{
-				//Draw animation
-				posX += KeyFrame[playIndex].incX;
-				posY += KeyFrame[playIndex].incY;
-				posZ += KeyFrame[playIndex].incZ;
+				rot_tren += 0.3f;
+				movx -= 0.1f;
+			}
+		}
 
-				rotRodIzq += KeyFrame[playIndex].rotInc;
-				rotRodDer += KeyFrame[playIndex].rotInc2;
+		if (recorrido2)
+		{
+			if (movz < -150.0f)
+			{
+				recorrido2 = false;
+				recorrido3 = true;
+				rotvehiculo = -180.0f;
 
-				rotBraIzq += KeyFrame[playIndex].rotIncBraI;
-				rotBraDer += KeyFrame[playIndex].rotIncBraD;
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movz -= 0.1f;
+			}
+		}
 
-				i_curr_steps++;
+		if (recorrido3)
+		{
+			if (movx > 130.0f)
+			{
+				recorrido3 = false;
+				recorrido4 = true;
+				rotvehiculo = 90.0f;
+
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movx += 0.1f;
+			}
+		}
+
+		if (recorrido4)
+		{
+			if (movx > 150.0f)
+			{
+				recorrido4 = false;
+				recorrido1 = true;
+				rotvehiculo = 0.0f;
+
+			}
+			else
+			{
+				rot_tren += 0.3f;
+				movx += 0.1f;
+
+			}
+		}
+	}
+
+	if (anim_nieve)
+	{
+		if (arriba1)
+		{
+			if (movy > 8.0f && movy2 > 16.0f)
+			{
+				arriba1 = false;
+				arriba_giro = true;
+			}
+			else
+			{
+				movy += 0.1f;
+				movy2 += 0.2f;
+			}
+		}
+		if (arriba_giro)
+		{
+			if (rot_nieve < -360.0f && rot_nieve2 >360.0f)
+			{
+				arriba_giro = false;
+				arriba2 = true;
+			}
+			else
+			{
+				rot_nieve -= 1.0f;
+				rot_nieve2 += 2.0f;
+			}
+		}
+		if (arriba2)
+		{
+			if (movy < 0.0f && movy2 < 0.0f)
+			{
+				abajo_giro = true;
+				arriba2 = false;
+			}
+			else
+			{
+				movy -= 0.1f;
+				movy2 -= 0.2f;
+			}
+		}
+		if (abajo_giro)
+		{
+			if (rot_nieve > 0.0f && rot_nieve2 < 0.0f)
+			{
+				abajo_giro = false;
+				arriba1 = true;
+			}
+			else
+			{
+				rot_nieve += 1.0f;
+				rot_nieve2 -= 1.0f;
+			}
+		}
+
+	}
+
+
+	if (anim_brazo)
+	{
+		if (recorrido1_brazo)
+		{
+			if (rot_brazo > 52.0f) {
+				//rot_gorro = -1.0f;
+				recorrido1_brazo = false;
+				recorrido2_brazo = true;
+			}
+			else
+			{
+				rot_brazo += 0.1f;
+			}
+		}
+
+		if (recorrido2_brazo)
+		{
+			if (mov_gorro < -1.0f) {
+				//rot_gorro = -1.0f;
+				recorrido2_brazo = false;
+				recorrido3_brazo = true;
+				recorrido4_brazo = true;
+			}
+			else
+			{
+				mov_gorro -= 0.01f;
+			}
+		}
+
+		if (recorrido3_brazo)
+		{
+			if (rot_brazo < 0.0f) {
+				recorrido3_brazo = false;
+				//recorrido4_brazo = true;
+			}
+			else
+			{
+				rot_brazo -= 0.1f;
+			}
+		}
+		if (recorrido4_brazo)
+		{
+			if (rot_brazo2 < -60.0f) {
+				recorrido5_brazo = true;
+				recorrido4_brazo = false;
+			}
+			else
+			{
+				rot_brazo2 -= 0.1f;
+			}
+		}
+		if (recorrido5_brazo)
+		{
+			if (mov_gorro > 0.0f) {
+				recorrido5_brazo = false;
+				recorrido6_brazo = true;
+			}
+			else
+			{
+				mov_gorro += 0.01;
+			}
+		}
+
+		if (recorrido6_brazo)
+		{
+			if (rot_brazo2 > 0.0f) {
+				recorrido6_brazo = false;
+				recorrido1_brazo = true;
+			}
+			else
+			{
+				rot_brazo2 += 0.1;
+			}
+		}
+
+	}
+	if (anim_angel)
+	{
+		if (recorrido1_angel)
+		{
+			if (rot_ala1 > 30.0f)
+			{
+				recorrido1_angel = false;
+				recorrido2_angel = true;
+			}
+			else
+			{
+				rot_ala1 += 0.1;
 			}
 
 		}
+		if (recorrido2_angel)
+		{
+			if (rot_ala1 < 0.0f)
+			{
+				recorrido2_angel = false;
+				recorrido1_angel = true;
+			}
+			else
+			{
+				rot_ala1 -= 0.1;
+			}
+
+		}
+
+		if (recorrido3_angel)
+		{
+			if (rot_ala2 < -30.0f)
+			{
+				recorrido3_angel = false;
+				recorrido4_angel = true;
+			}
+			else
+			{
+				rot_ala2 -= 0.1;
+			}
+
+		}
+		if (recorrido4_angel)
+		{
+			if (rot_ala2 > 0.0f)
+			{
+				recorrido4_angel = false;
+				recorrido3_angel = true;
+			}
+			else
+			{
+				rot_ala2 += 0.1;
+			}
+
+		}
+
+		if (recorrido5_angel)
+		{
+			if (rot_brazo_angel < -15.0f)
+			{
+				recorrido5_angel = false;
+				recorrido6_angel = true;
+			}
+			else
+			{
+				rot_brazo_angel -= 0.1;
+			}
+
+		}
+
+		if (recorrido6_angel)
+		{
+			if (rot_brazo_angel > 0.0f)
+			{
+				recorrido6_angel = false;
+				recorrido5_angel = true;
+			}
+			else
+			{
+				rot_brazo_angel += 0.1;
+			}
+
+		}
+
 	}
+}
+
+
+
+
 
 
 // Is called whenever a key is pressed/released via GLFW
-void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode)
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
-	if (keys[GLFW_KEY_L])
-	{
-		if (play == false && (FrameIndex > 1))
-		{
-
-			resetElements();
-			//First Interpolation				
-			interpolation();
-
-			play = true;
-			playIndex = 0;
-			i_curr_steps = 0;
-		}
-		else
-		{
-			play = false;
-		}
-
-	}
-
-	if (keys[GLFW_KEY_K])
-	{
-		if (FrameIndex<MAX_FRAMES)
-		{
-			saveFrame();
-		}
-
-	}
-
-
 	if (GLFW_KEY_ESCAPE == key && GLFW_PRESS == action)
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
@@ -1100,19 +1507,34 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 		}
 	}
 
-	if (keys[GLFW_KEY_SPACE])
+	if (keys[GLFW_KEY_V])
 	{
 		active = !active;
-		if (active)
-			LightP1 = glm::vec3(1.0f, 0.0f, 0.0f);
-		else
-			LightP1 = glm::vec3(0.0f, 0.0f, 0.0f);
+		anim = !anim;
+	}
+
+	if (keys[GLFW_KEY_Z])
+	{
+		active_nieve = !active_nieve;
+		anim_nieve = !anim_nieve;
+	}
+
+
+	if (keys[GLFW_KEY_X])
+	{
+		active_brazo = !active_brazo;
+		anim_brazo = !anim_brazo;
+	}
+
+	if (keys[GLFW_KEY_C])
+	{
+		active_angel = !active_angel;
+		anim_angel = !anim_angel;
 	}
 }
 
-void MouseCallback(GLFWwindow *window, double xPos, double yPos)
+void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 {
-
 	if (firstMouse)
 	{
 		lastX = xPos;
@@ -1127,127 +1549,4 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos)
 	lastY = yPos;
 
 	camera.ProcessMouseMovement(xOffset, yOffset);
-}
-
-// Moves/alters the camera positions based on user input
-void DoMovement()
-{
-
-	if (keys[GLFW_KEY_1])
-	{
-
-		rot += 1;
-
-	}
-
-	if (keys[GLFW_KEY_2])
-	{
-		if (rotRodIzq<80.0f)
-			rotRodIzq += 1.0f;
-			
-	}
-
-	if (keys[GLFW_KEY_3])
-	{
-		if (rotRodIzq>-45)
-			rotRodIzq -= 1.0f;
-		
-	}
-
-	if (keys[GLFW_KEY_4])
-	{
-		if (rotRodDer < 80.0f)
-			rotRodDer += 1.0f;
-
-	}
-
-	if (keys[GLFW_KEY_5])
-	{
-		if (rotRodDer > -45)
-			rotRodDer -= 1.0f;
-
-	}
-	
-	if (keys[GLFW_KEY_6])
-	{
-		if (rotBraIzq < 80.0f)
-			rotBraIzq += 1.0f;
-
-	}
-
-	if (keys[GLFW_KEY_7])
-	{
-		if (rotBraIzq > -45)
-			rotBraIzq -= 1.0f;
-
-	}
-
-	if (keys[GLFW_KEY_8])
-	{
-		if (rotBraDer < 80.0f)
-			rotBraDer += 1.0f;
-
-	}
-
-	if (keys[GLFW_KEY_9])
-	{
-		if (rotBraDer > -45)
-			rotBraDer -= 1.0f;
-
-	}
-
-
-
-	
-
-	//Mov Personaje
-	if (keys[GLFW_KEY_H])
-	{
-		posZ += 1;
-	}
-
-	if (keys[GLFW_KEY_Y])
-	{
-		posZ -= 1;
-	}
-
-	if (keys[GLFW_KEY_G])
-	{
-		posX -= 1;
-	}
-
-	if (keys[GLFW_KEY_J])
-	{
-		posX += 1;
-	}
-
-
-
-
-	// Camera controls
-	if (keys[GLFW_KEY_W] || keys[GLFW_KEY_UP])
-	{
-		camera.ProcessKeyboard(FORWARD, deltaTime*2);
-
-	}
-
-	if (keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN])
-	{
-		camera.ProcessKeyboard(BACKWARD, deltaTime*2);
-
-
-	}
-
-	if (keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT])
-	{
-		camera.ProcessKeyboard(LEFT, deltaTime*2);
-
-
-	}
-
-	if (keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT])
-	{
-		camera.ProcessKeyboard(RIGHT, deltaTime*2);
-	}
-
 }
